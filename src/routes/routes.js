@@ -1,15 +1,15 @@
 const express = require('express');
 
-const {getAllUser, getUser,saveUser} = require('../controllers/userControllers');
+const {getAllStaff, getStaffDetail, saveStaff} = require('../controllers/staffControllers');
+const {login, saveLoginDetail}  = require('../controllers/loginController');
 const {getAllStudents, getStudentDetail, saveStudent} = require('../controllers/studentControllers');
 
 const router = express.Router();
 
 router.route("/student").get(getAllStudents).post(saveStudent);
-router.route("/student/:id").get(getStudentDetail);
-router.route("/user").get(getAllUser).post(saveUser);
-router.route('/user/:email').get(getUser);
-
-
+router.route("/student/:email").get(getStudentDetail); 
+router.route("/staff").get(getAllStaff).post(saveStaff);
+router.route('/staff/:email').get(getStaffDetail);
+router.route('/login').post(login).put(saveLoginDetail);
 
 module.exports = router;
