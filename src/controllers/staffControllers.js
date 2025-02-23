@@ -10,10 +10,12 @@ exports.deleteStaff = async (req, res) => {
                 res.status(200).json({ status: "success", data: staff });
             }
         }else{
+            logger.error(`staffController staff not found, ${e.message}`);
             res.status(200).json({ status: "NOT_FOUND", data: "staff not found" });
         }
     }
     catch(e){
+        logger.error(`staffController, ${e.message}`);
         res.status(500).json({ error: e.message });
     }
 }
@@ -22,6 +24,7 @@ exports.saveStaff = async (req, res) => {
     try {
         const staff = await staffServices.saveStaff(req.body);
         if(!staff) {
+            logger.error(`staffController Staff not saved, ${e.message}`);
             throw new Error("Staff not saved");
         }else{
             const login = await loginServices.saveLoginDetail({
@@ -34,18 +37,19 @@ exports.saveStaff = async (req, res) => {
             if(!login){
                 const staff = await staffServices.deleteStaff(req.body.email);
                 if(staff){
-                    console.log("Staff deleted");
+                    logger.info(`staffController Staff deleted, ${e.message}`);
                 }else{
-                    console.log("Staff not deleted");
+                    logger.error(`staffController Staff not deleted, ${e.message}`);
+                    throw new Error("Staff not deleted");
                 }
+                logger.error(`staffController Login not saved, ${e.message}`);
                 throw new Error("Login not saved");
             }
         }
-        
-        console.log(req.body, staff);
         res.status(200).json({ status: "success", data: staff });
     }
     catch (e) {
+        logger.error(`staffController save staff, ${e.message}`);
         res.status(500).json({ error: e.message })
     }
 }
@@ -55,6 +59,7 @@ exports.getAllStaff = async (req, res) => {
         const staffs = await staffServices.getAllStaff();
         res.status(200).json({ status: "success", data: staffs });
     } catch (e) {
+        logger.error(`staffController getAll staff, ${e.message}`);
         res.status(500).json({ "error": e.message });
     }
 }
@@ -65,9 +70,12 @@ exports.getStaffDetail = async (req, res) => {
         if (staff) {
             res.status(200).json({ status: "success", data: staff })
         } else {
+            logger.error(`staffController staffNotFound, ${e.message}`);
             res.status(200).json({ status: "NOT_FOUND", data: "staff not found" });
         }
     } catch (e) {
+        logger.error(`staffController getStaffDetail, ${e.message}`);
+
         res.status(500).json({
             error: e.message
         })
