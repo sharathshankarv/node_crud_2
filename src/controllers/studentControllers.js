@@ -16,16 +16,17 @@ exports.saveStudent = async (req, res) => {
             if(!login){
                 const delStudent = await studentService.deleteStudent(req.body.email);
                 if(!delStudent){
-                    console.log("Student not deleted");
+                    logger.error("Student not deleted");
                 }
             }
         }
         res.json({status: "success", data: student});
     }catch(e){
+        logger.error(`StudentController SaveStudent, ${e.message}`);
         if(student){
             const delStudent = await studentService.deleteStudent(req.body.email);
             if(!delStudent){
-                console.log("Student not deleted");
+                logger.error(`StudentController not deleted, ${e.message}`);
             }
         }
         res.status(500).json({ error: e.message }); 
@@ -37,6 +38,7 @@ exports.getAllStudents = async (req, res) => {
         const students = await studentService.getAllStudents();
         res.json({ data: students, status: "success" })
     } catch (e) {
+        logger.error(`StudentController getAllStudent, ${e.message}`);
         res.status(500).json({ error: e.message });
     }
 }
@@ -47,6 +49,7 @@ exports.getStudentDetail = async (req, res) => {
         const studentDet = await studentService.getStudentDetail(id);
         res.json({ data: studentDet, status: "success" })
     } catch (e) {
+        logger.error(`StudentController getStudentDetail, ${e.message}`);
         res.status(500).json({ error: e.message })
     }
 }
