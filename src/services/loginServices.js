@@ -5,5 +5,5 @@ exports.saveLoginDetail = async (data) => {
 }
 
 exports.getLogin = async(email) => {
-    return await loginSchema.findById(email);
+    return await loginSchema.findOne(email);
 }

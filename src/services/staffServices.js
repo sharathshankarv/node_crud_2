@@ -9,7 +9,7 @@ exports.deleteStaff = async (email) => {
 }
 
 exports.getAllStaff = async() => {
-    return await Staff.getAllUser();
+    return await Staff.find();
 }
 
 exports.getStaff = async(email) => {
