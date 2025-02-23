@@ -4,6 +4,10 @@ exports.saveStudent = async (data) =>{
     return await studentModel.create(data);
 }
 
+exports.deleteStudent = async(email) => {
+    return await studentModel.deleteOne({email: email});
+}
+
 exports.getAllStudents = async () => {
     return await studentModel.find();
 }
