@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const logger = require("./logger");
+const logger = require("../../logger");
 const loginService = require('../services/loginServices');
 const { hashPassword, verifyPassword } = require("../utilities/passwordUtils");
 
