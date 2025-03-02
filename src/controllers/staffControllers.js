@@ -7,16 +7,16 @@ exports.deleteStaff = async (req, res) => {
         if(staff){
             const login = await loginServices.deleteLogin(req.email);
             if(login){
-                res.status(200).json({ status: "success", data: staff });
+                return res.status(200).json({ status: "success", data: staff });
             }
         }else{
             logger.error(`staffController staff not found, ${e.message}`);
-            res.status(200).json({ status: "NOT_FOUND", data: "staff not found" });
+            return res.status(200).json({ status: "NOT_FOUND", data: "staff not found" });
         }
     }
     catch(e){
         logger.error(`staffController, ${e.message}`);
-        res.status(500).json({ error: e.message });
+        return res.status(500).json({ error: e.message });
     }
 }
 
@@ -46,21 +46,21 @@ exports.saveStaff = async (req, res) => {
                 throw new Error("Login not saved");
             }
         }
-        res.status(200).json({ status: "success", data: staff });
+        return res.status(200).json({ status: "success", data: staff });
     }
     catch (e) {
         logger.error(`staffController save staff, ${e.message}`);
-        res.status(500).json({ error: e.message })
+        return res.status(500).json({ error: e.message })
     }
 }
  
 exports.getAllStaff = async (req, res) => {
     try {
         const staffs = await staffServices.getAllStaff();
-        res.status(200).json({ status: "success", data: staffs });
+        return  res.status(200).json({ status: "success", data: staffs });
     } catch (e) {
         logger.error(`staffController getAll staff, ${e.message}`);
-        res.status(500).json({ "error": e.message });
+        return res.status(500).json({ "error": e.message });
     }
 }
 
@@ -68,15 +68,15 @@ exports.getStaffDetail = async (req, res) => {
     try {
         const staff = await staffServices.getStaff(req.email);
         if (staff) {
-            res.status(200).json({ status: "success", data: staff })
+            return res.status(200).json({ status: "success", data: staff })
         } else {
             logger.error(`staffController staffNotFound, ${e.message}`);
-            res.status(200).json({ status: "NOT_FOUND", data: "staff not found" });
+            return res.status(200).json({ status: "NOT_FOUND", data: "staff not found" });
         }
     } catch (e) {
         logger.error(`staffController getStaffDetail, ${e.message}`);
 
-        res.status(500).json({
+        return res.status(500).json({
             error: e.message
         })
     }
