@@ -64,7 +64,7 @@ exports.login = async (req, res) => {
             res.cookie("authToken", token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "developement", // Set to true in production (HTTPS)
-                sameSite: "Strict", // Prevent CSRF attacks
+                // sameSite: "Strict", // Prevent CSRF attacks
                 maxAge: 60 * 60 * 1000 // 1 hour
             });
             return res.json({ status: "success", token: "login Successfull" });
