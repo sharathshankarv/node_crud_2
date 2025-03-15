@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const logger = require("../../logger");
 const { loginServices } = require('../services');
-const { ErrorMsgs } = require("../Constants");
+const { ErrorMsgs } = require("../constants");
 const { hashPassword, verifyPassword } = require("../utilities/passwordUtils");
 
 const {errorMsgs} = ErrorMsgs;
