@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {CONSTANTS} = require("../Constants");
+const {CONSTANTS} = require("../constants");
 
 mongoose.set("debug", true);
 

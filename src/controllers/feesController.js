@@ -1,7 +1,7 @@
 const { feeServices, loginServices } = require('../services');
 const {getUserDetail} = require('./loginController');
 const { isValidEmail } = require('../utilities');
-const { ErrorMsgs, CONSTANTS } = require('../Constants');
+const { ErrorMsgs, CONSTANTS } = require('../constants');
 
 exports.saveFees = async (req, res) => {
     try{
