@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 function JWTAuthenticator(req, res, next) {
-    const token = req.header("Authorization");
+    const token = req.cookies.token || req.header("Authorization");
     if (!token) {
         return res.status(401).json({ error: "Access denied" });
     }
