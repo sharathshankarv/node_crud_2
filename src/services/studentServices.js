@@ -12,7 +12,7 @@ exports.getAllStudents = async () => {
     return await studentModel.find();
 }
 
-exports.getStudentDetail = async (id) => {
-    return await studentModel.findById(id)
+exports.getStudentDetail = async (email) => {
+    return await studentModel.findOne(email)
 }
 
