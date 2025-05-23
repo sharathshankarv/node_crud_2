@@ -8,17 +8,18 @@ const {getFeesDetails, saveFees} = require('../controllers/feesController');
 
 const router = express.Router();
 
+const routePrefix = '/api/v1';
 //Unprotected routes
-router.route('/login').post(login);
-router.route('/logout').post(logout);
+router.route(`${routePrefix}/login`).post(login);
+router.route(`${routePrefix}/logout`).post(logout);
 
 //Protected routes
-router.route('/me').get(JWTAuthenticator, getUserDetail);
-router.route("/student").get(JWTAuthenticator, getAllStudents).post(JWTAuthenticator,saveStudent);
-router.route("/student/:email").get(JWTAuthenticator,getStudentDetail); 
-router.route("/staff").get(JWTAuthenticator,getAllStaff).post(JWTAuthenticator,saveStaff);
-router.route('/staff/:email').get(JWTAuthenticator,getStaffDetail);
-router.route('/fees').post(JWTAuthenticator,saveFees);
-router.route('/fees').get(JWTAuthenticator,getFeesDetails);
+router.route(`${routePrefix}/me`).get(JWTAuthenticator, getUserDetail);
+router.route(`${routePrefix}/student`).get(JWTAuthenticator, getAllStudents).post(JWTAuthenticator,saveStudent);
+router.route(`${routePrefix}/student/:email`).get(JWTAuthenticator,getStudentDetail); 
+router.route(`${routePrefix}/staff`).get(JWTAuthenticator,getAllStaff).post(JWTAuthenticator,saveStaff);
+router.route(`${routePrefix}/staff/:email`).get(JWTAuthenticator,getStaffDetail);
+router.route(`${routePrefix}/fees`).post(JWTAuthenticator,saveFees);
+router.route(`${routePrefix}/fees`).get(JWTAuthenticator,getFeesDetails);
 
 module.exports = router;
