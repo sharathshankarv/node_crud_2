@@ -3,9 +3,11 @@ const cors = require("cors");
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const db = require('./db');
+const cookieParser = require('cookie-parser');
 const routes = require('./src/routes/routes');
 
 const app = express();
+app.use(cookieParser());
 app.use(helmet());
 
 const allowedOrigins = ["http://localhost:3000", "https://node-crud-2.vercel.app"];
