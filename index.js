@@ -10,7 +10,7 @@ const app = express();
 app.use(cookieParser());
 app.use(helmet());
 
-const allowedOrigins = ["http://localhost:3000", "https://node-crud-2.vercel.app", "https://college-front-end-psi.vercel.app", "https://college-front-l78i7zicj-sharathshankarvs-projects.vercel.app"];
+const allowedOrigins = ["http://localhost:3000", "https://node-crud-2.vercel.app", "https://college-front-end-psi.vercel.app", "https://college-front-l78i7zicj-sharathshankarvs-projects.vercel.app", "https://college-front-4z7abtf9j-sharathshankarvs-projects.vercel.app"];
 app.use(
   cors({
     origin: allowedOrigins,
